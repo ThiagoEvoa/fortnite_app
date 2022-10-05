@@ -1,18 +1,16 @@
-import 'package:json_annotation/json_annotation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
+part 'fortnite_map.freezed.dart';
 part 'fortnite_map.g.dart';
 
-@JsonSerializable()
-class FortniteMap {
-  @JsonKey(name: 'map')
-  final String fortniteMapUrl;
-
-  FortniteMap({required this.fortniteMapUrl});
+@freezed
+class FortniteMap with _$FortniteMap {
+  const factory FortniteMap({
+    @JsonKey(name: 'map') required String fortniteMapUrl,
+  }) = _FortniteMap;
 
   factory FortniteMap.fromJson(Map<String, dynamic> json) =>
       _$FortniteMapFromJson(json);
 
-  Map<String, dynamic> toJson() => _$FortniteMapToJson(this);
-
-  factory FortniteMap.initialState() => FortniteMap(fortniteMapUrl: '');
+  factory FortniteMap.initialState() => const FortniteMap(fortniteMapUrl: '');
 }

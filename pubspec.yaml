@@ -39,6 +39,7 @@ dependencies:
     sdk: flutter
   flutter_native_splash: ^2.2.9
   flutter_riverpod: ^2.0.2
+  freezed_annotation: ^2.1.0
   json_annotation: ^4.7.0
   pretty_dio_logger: ^1.1.1
   retrofit: ^3.0.1+1
@@ -48,6 +49,7 @@ dev_dependencies:
   flutter_lints: ^2.0.0
   flutter_test:
     sdk: flutter
+  freezed: ^2.1.1
   intl: ^0.17.0
   json_serializable: ^6.4.0
   retrofit_generator: ^4.1.0+1

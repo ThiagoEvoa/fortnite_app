@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../model/fortnite_shop.dart';
+import '../model/model.dart';
 import '../repository/fortnite_shop_repository.dart';
 import '../repository/fortnite_shop_repository_impl.dart';
 

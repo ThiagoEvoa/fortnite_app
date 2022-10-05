@@ -1,27 +1,21 @@
-import 'package:json_annotation/json_annotation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
+part 'user_stats.freezed.dart';
 part 'user_stats.g.dart';
 
-@JsonSerializable()
-class UserStats {
-  UserStats({
-    required this.wins,
-    required this.deaths,
-    required this.kills,
-    required this.kd,
-  });
-
-  final int wins;
-  final int deaths;
-  final int kills;
-  final double kd;
+@freezed
+class UserStats with _$UserStats {
+  const factory UserStats({
+    required int wins,
+    required int deaths,
+    required int kills,
+    required double kd,
+  }) = _UserStats;
 
   factory UserStats.fromJson(Map<String, dynamic> json) =>
       _$UserStatsFromJson(json);
 
-  Map<String, dynamic> toJson() => _$UserStatsToJson(this);
-
-  factory UserStats.initialState() => UserStats(
+  factory UserStats.initialState() => const UserStats(
         wins: 0,
         deaths: 0,
         kills: 0,

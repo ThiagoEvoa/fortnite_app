@@ -1,3 +1,5 @@
+// ignore_for_file: unused_element
+
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fortnite_app/src/features/fortnite_map/model/fortnite_map.dart';

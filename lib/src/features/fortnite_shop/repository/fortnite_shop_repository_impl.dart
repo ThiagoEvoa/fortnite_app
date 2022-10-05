@@ -1,6 +1,8 @@
+// ignore_for_file: unused_element
+
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:fortnite_app/src/features/fortnite_shop/model/fortnite_shop.dart';
+import 'package:fortnite_app/src/features/fortnite_shop/model/model.dart';
 import 'package:fortnite_app/src/features/fortnite_shop/repository/fortnite_shop_repository.dart';
 import 'package:retrofit/retrofit.dart';
 

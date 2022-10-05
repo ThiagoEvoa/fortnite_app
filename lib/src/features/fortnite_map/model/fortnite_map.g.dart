@@ -6,11 +6,12 @@ part of 'fortnite_map.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-FortniteMap _$FortniteMapFromJson(Map<String, dynamic> json) => FortniteMap(
+_$_FortniteMap _$$_FortniteMapFromJson(Map<String, dynamic> json) =>
+    _$_FortniteMap(
       fortniteMapUrl: json['map'] as String,
     );
 
-Map<String, dynamic> _$FortniteMapToJson(FortniteMap instance) =>
+Map<String, dynamic> _$$_FortniteMapToJson(_$_FortniteMap instance) =>
     <String, dynamic>{
       'map': instance.fortniteMapUrl,
     };
