@@ -5,8 +5,14 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
-  String get counter_phrase => 'You have pushed the button this many times:';
+  String get internet_exception_message => 'No internet connection.';
 
   @override
-  String get internet_exception_message => 'No internet connection.';
+  String get wins => 'Wins';
+
+  @override
+  String get kills => 'Kills';
+
+  @override
+  String get deaths => 'Deaths';
 }

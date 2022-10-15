@@ -37,11 +37,15 @@ class FortniteMapScreenState extends ConsumerState<FortniteMapScreen> {
         scaleEnabled: true,
         child: provider.when(
           data: (data) {
-            return Image.network(
-              data.fortniteMapUrl,
-              height: size.height,
-              width: size.width,
-            );
+            final imageUrl = data.fortniteMapUrl;
+
+            return imageUrl.isEmpty
+                ? Container()
+                : Image.network(
+                    data.fortniteMapUrl,
+                    height: size.height,
+                    width: size.width,
+                  );
           },
           error: (error, stack) {
             return ErrorWidget(appLocalizations!, error: error);

@@ -91,17 +91,29 @@ abstract class AppLocalizations {
     Locale('en')
   ];
 
-  /// No description provided for @counter_phrase.
-  ///
-  /// In en, this message translates to:
-  /// **'You have pushed the button this many times:'**
-  String get counter_phrase;
-
   /// No description provided for @internet_exception_message.
   ///
   /// In en, this message translates to:
   /// **'No internet connection.'**
   String get internet_exception_message;
+
+  /// No description provided for @wins.
+  ///
+  /// In en, this message translates to:
+  /// **'Wins'**
+  String get wins;
+
+  /// No description provided for @kills.
+  ///
+  /// In en, this message translates to:
+  /// **'Kills'**
+  String get kills;
+
+  /// No description provided for @deaths.
+  ///
+  /// In en, this message translates to:
+  /// **'Deaths'**
+  String get deaths;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

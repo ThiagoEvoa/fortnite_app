@@ -10,18 +10,22 @@ class UserStatsScreen extends ConsumerStatefulWidget {
 }
 
 class UserStatsScreenState extends ConsumerState<UserStatsScreen> {
+  late TextEditingController _textEditingController;
+
   void _retrieveFortniteShop() {
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      ref.read(userStatsProvider.notifier).retrieveUserStats(
-            userName: 'vikingbonsai',
-          );
-    });
+    WidgetsBinding.instance.addPostFrameCallback(
+      (timeStamp) {
+        ref
+            .read(userStatsProvider.notifier)
+            .retrieveUserStats(userName: _textEditingController.text);
+      },
+    );
   }
 
   @override
   void initState() {
     super.initState();
-    _retrieveFortniteShop();
+    _textEditingController = TextEditingController();
   }
 
   @override
@@ -30,18 +34,47 @@ class UserStatsScreenState extends ConsumerState<UserStatsScreen> {
 
     return Scaffold(
       appBar: AppBar(),
-      body: Center(
-        child: provider.when(
-          data: (data) {
-            return Text(data.toString());
-          },
-          error: (error, stack) {
-            return Text(error.toString());
-          },
-          loading: () {
-            return const CircularProgressIndicator();
-          },
-        ),
+      body: ListView(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        children: [
+          TextField(
+            controller: _textEditingController,
+            decoration: InputDecoration(
+              suffixIcon: IconButton(
+                onPressed: _retrieveFortniteShop,
+                icon: const Icon(Icons.search),
+              ),
+              border: const OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(4),
+                ),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 20),
+            child: provider.when(
+              data: (data) {
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Center(child: Image.asset('assets/images/icon.png')),
+                    Text('Wins: ${data.wins}'),
+                    Text('Kills: ${data.kills}'),
+                    Text('Deaths: ${data.deaths}'),
+                    Text('KD: ${data.kd}'),
+                  ],
+                );
+              },
+              error: (error, stack) {
+                return Center(child: Text(error.toString()));
+              },
+              loading: () {
+                return const Center(child: CircularProgressIndicator());
+              },
+            ),
+          ),
+        ],
       ),
     );
   }

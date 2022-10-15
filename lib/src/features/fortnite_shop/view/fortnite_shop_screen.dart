@@ -28,18 +28,42 @@ class FortniteShopScreenState extends ConsumerState<FortniteShopScreen> {
 
     return Scaffold(
       appBar: AppBar(),
-      body: Center(
-        child: provider.when(
-          data: (data) {
-            return Text(data.toString());
-          },
-          error: (error, stack) {
-            return Text(error.toString());
-          },
-          loading: () {
-            return const CircularProgressIndicator();
-          },
-        ),
+      body: provider.when(
+        data: (data) {
+          return ListView(
+            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+            children: [
+              Text(data.daily.name!),
+              Column(
+                children: data.daily.entries
+                    .map(
+                      (entry) => Column(
+                        children: entry.items
+                            .map(
+                              (item) => ListTile(
+                                contentPadding: const EdgeInsets.all(1),
+                                leading: CircleAvatar(
+                                  child: Image.network(
+                                    item.images.featured ?? item.images.icon!,
+                                  ),
+                                ),
+                                title: Text(item.name),
+                              ),
+                            )
+                            .toList(),
+                      ),
+                    )
+                    .toList(),
+              )
+            ],
+          );
+        },
+        error: (error, stack) {
+          return Text(error.toString());
+        },
+        loading: () {
+          return const CircularProgressIndicator();
+        },
       ),
     );
   }
