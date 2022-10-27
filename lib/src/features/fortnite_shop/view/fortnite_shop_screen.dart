@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fortnite_app/src/features/fortnite_shop/view_model/fortnite_shop_provider.dart';
 
+import '../model/model.dart';
+
 class FortniteShopScreen extends ConsumerStatefulWidget {
   const FortniteShopScreen({super.key});
 
@@ -14,6 +16,20 @@ class FortniteShopScreenState extends ConsumerState<FortniteShopScreen> {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       ref.read(fortniteShopProvider.notifier).retrieveFortniteShop();
     });
+  }
+
+  Future<void> _showDialog(Item item) async {
+    return showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text(item.name),
+          content: Image.network(
+            item.images.featured ?? item.images.icon!,
+          ),
+        );
+      },
+    );
   }
 
   @override
@@ -34,27 +50,11 @@ class FortniteShopScreenState extends ConsumerState<FortniteShopScreen> {
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
             children: [
               Text(data.daily.name!),
-              Column(
-                children: data.daily.entries
-                    .map(
-                      (entry) => Column(
-                        children: entry.items
-                            .map(
-                              (item) => ListTile(
-                                contentPadding: const EdgeInsets.all(1),
-                                leading: CircleAvatar(
-                                  child: Image.network(
-                                    item.images.featured ?? item.images.icon!,
-                                  ),
-                                ),
-                                title: Text(item.name),
-                              ),
-                            )
-                            .toList(),
-                      ),
-                    )
-                    .toList(),
-              )
+              _mountSection(data.daily.entries),
+              Text(data.featured.name!),
+              _mountSection(data.featured.entries),
+              Text(data.specialFeatured.name ?? 'SPECIAL FEATURED'),
+              _mountSection(data.specialFeatured.entries),
             ],
           );
         },
@@ -65,6 +65,31 @@ class FortniteShopScreenState extends ConsumerState<FortniteShopScreen> {
           return const CircularProgressIndicator();
         },
       ),
+    );
+  }
+
+  Column _mountSection(List<Entry> entries) {
+    return Column(
+      children: entries
+          .map(
+            (entry) => Column(
+              children: entry.items
+                  .map(
+                    (item) => ListTile(
+                      contentPadding: const EdgeInsets.all(1),
+                      leading: CircleAvatar(
+                        child: Image.network(
+                          item.images.featured ?? item.images.icon!,
+                        ),
+                      ),
+                      title: Text(item.name),
+                      onTap: () => _showDialog(item),
+                    ),
+                  )
+                  .toList(),
+            ),
+          )
+          .toList(),
     );
   }
 }

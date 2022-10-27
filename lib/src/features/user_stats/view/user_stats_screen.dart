@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fortnite_app/src/features/user_stats/model/user_stats.dart';
 import 'package:fortnite_app/src/features/user_stats/view_model/user_stats_provider.dart';
 
 class UserStatsScreen extends ConsumerStatefulWidget {
@@ -55,16 +56,18 @@ class UserStatsScreenState extends ConsumerState<UserStatsScreen> {
             padding: const EdgeInsets.only(top: 20),
             child: provider.when(
               data: (data) {
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Center(child: Image.asset('assets/images/icon.png')),
-                    Text('Wins: ${data.wins}'),
-                    Text('Kills: ${data.kills}'),
-                    Text('Deaths: ${data.deaths}'),
-                    Text('KD: ${data.kd}'),
-                  ],
-                );
+                return data == UserStats.initialState()
+                    ? Container()
+                    : Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Center(child: Image.asset('assets/images/icon.png')),
+                          Text('Wins: ${data.wins}'),
+                          Text('Kills: ${data.kills}'),
+                          Text('Deaths: ${data.deaths}'),
+                          Text('KD: ${data.kd}'),
+                        ],
+                      );
               },
               error: (error, stack) {
                 return Center(child: Text(error.toString()));
