@@ -31,10 +31,19 @@ void main() {
       return dio;
     }));
 
-    fortniteMapRepositoryImpl =
-        FortniteMapRepositoryImpl(ProviderContainer(overrides: [
-      fortniteMapRepository.overrideWithValue(mockFortniteMapRepository),
-    ]).read(dioProvider));
+    fortniteMapRepositoryImpl = FortniteMapRepositoryImpl(
+      ProviderContainer(
+        overrides: [
+          fortniteMapRepository.overrideWithValue(mockFortniteMapRepository),
+        ],
+      ).read(dioProvider),
+    );
+  });
+
+  test('Test if correct type is returned', () {
+    final provider = ProviderContainer().read(fortniteMapRepository);
+
+    expect(provider, isA<FortniteMapRepositoryImpl>());
   });
 
   test('Retrieve FortniteMap object when success call retrieveFortniteMap',

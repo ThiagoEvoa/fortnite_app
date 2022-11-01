@@ -308,6 +308,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.15.0"
+  http:
+    dependency: "direct dev"
+    description:
+      name: http
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.13.5"
   http_mock_adapter:
     dependency: "direct dev"
     description:

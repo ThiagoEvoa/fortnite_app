@@ -6,12 +6,18 @@ import 'package:fortnite_app/src/features/fortnite_map/model/fortnite_map.dart';
 import '../../../../test_util/test_util.dart';
 
 void main() {
-  test('Transform map model from json', () {
+  test('FortniteMap initial state should return correctly', () {
+    final expectedModel = FortniteMap.initialState();
+
+    expect(expectedModel.fortniteMapUrl.isEmpty, true);
+  });
+
+  test('Transform FortniteMap map from json', () {
     final result = FortniteMap.fromJson(mockFortniteMapJson);
     expect(result, mockFortniteMapModel);
   });
 
-  test('Transform map model to json', () {
+  test('Transform FortnieteMap model to json', () {
     final result = json.encode(mockFortniteMapModel);
     expect(result, mockFortniteMapStringJson);
   });

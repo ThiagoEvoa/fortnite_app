@@ -40,18 +40,28 @@ class FortniteMapScreenState extends ConsumerState<FortniteMapScreen> {
             final imageUrl = data.fortniteMapUrl;
 
             return imageUrl.isEmpty
-                ? Container()
+                ? Container(
+                    key: const Key('fortnite_map_container_widget'),
+                  )
                 : Image.network(
                     data.fortniteMapUrl,
+                    key: const Key('fortnite_map_image_widget'),
                     height: size.height,
                     width: size.width,
                   );
           },
           error: (error, stack) {
-            return ErrorWidget(appLocalizations!, error: error);
+            return ErrorWidget(
+              key: const Key('fortnite_map_error_widget'),
+              appLocalizations!,
+              error: error,
+            );
           },
           loading: () {
-            return const Center(child: CircularProgressIndicator());
+            return const Center(
+              key: Key('fortnite_map_loading_widget'),
+              child: CircularProgressIndicator(),
+            );
           },
         ),
       ),
