@@ -1,35 +1,18 @@
-import 'dart:io';
+import 'package:fortnite_app/src/features/features.dart';
 
-import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:fortnite_app/src/features/fortnite_map/repository/fortnite_map_repository_impl.dart';
-import 'package:fortnite_app/src/features/fortnite_map/view/fortnite_map_screen.dart';
-import 'package:fortnite_app/src/features/fortnite_map/view_model/fortnite_map_provider.dart';
-import 'package:mocktail/mocktail.dart';
-
-import '../../../../test_util/test_util.dart';
+import '../../../../test_helper/test_helper.dart';
 
 class MockFortniteMapProvider extends Mock implements FortniteMapProvider {}
 
 class MockFortniteMapRepository extends Mock
     implements FortniteMapRepositoryImpl {}
 
-class MockHttpClient extends Mock implements HttpClient {}
-
 void main() {
   late FortniteMapProvider mockFortniteMapProvider;
   late FortniteMapRepositoryImpl mockFortniteRepositoryImpl;
 
   setUpAll(() {
-    HttpOverrides.global = null;
-    HttpOverrides.runZoned(
-      () {},
-      createHttpClient: (securityContext) => MockHttpClient(),
-    );
+    configureFallback();
   });
 
   setUp(() {
@@ -37,7 +20,8 @@ void main() {
     mockFortniteMapProvider = FortniteMapProvider(mockFortniteRepositoryImpl);
   });
 
-  testWidgets('description', (tester) async {
+  testWidgets('FortniteMapScreen should present all widgets correctly',
+      (tester) async {
     when(
       () => mockFortniteRepositoryImpl.retrieveFortniteMap(),
     ).thenAnswer((_) async => mockFortniteMapModel);
@@ -79,7 +63,50 @@ void main() {
     expect(finder, findsOneWidget);
   });
 
-  testWidgets('description error', (tester) async {
+  testWidgets('FortniteMapScreen should present loading widget correctly',
+      (tester) async {
+    when(
+      () => mockFortniteRepositoryImpl.retrieveFortniteMap(),
+    ).thenAnswer((_) async {
+      await Future<void>.delayed(const Duration(seconds: 3));
+      return mockFortniteMapModel;
+    });
+
+    await tester.pumpWidget(
+      ProviderScope(
+        overrides: [
+          fortniteMapRepository.overrideWithValue(mockFortniteRepositoryImpl),
+        ],
+        child: Localizations(
+          delegates: const [
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+            AppLocalizations.delegate,
+          ],
+          locale: const Locale('en', ''),
+          child: const MediaQuery(
+            data: MediaQueryData(),
+            child: Material(
+              child: FortniteMapScreen(),
+            ),
+          ),
+        ),
+      ),
+    );
+
+    await tester.pump();
+
+    final loadingFinder = find.byKey(const Key('fortnite_map_loading_widget'));
+
+    expectSync(loadingFinder, findsOneWidget);
+
+    await tester.pumpAndSettle();
+  });
+
+  testWidgets(
+      'FortniteMapScreen should present error widgets when an exception is thrown',
+      (tester) async {
     when(
       () => mockFortniteRepositoryImpl.retrieveFortniteMap(),
     ).thenThrow(DioError(requestOptions: RequestOptions(path: '')));

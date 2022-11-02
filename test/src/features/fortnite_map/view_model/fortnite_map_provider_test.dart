@@ -5,7 +5,7 @@ import 'package:fortnite_app/src/features/fortnite_map/repository/fortnite_map_r
 import 'package:fortnite_app/src/features/fortnite_map/view_model/fortnite_map_provider.dart';
 import 'package:mocktail/mocktail.dart';
 
-import '../../../../test_util/test_util.dart';
+import '../../../../test_helper/test_helper.dart';
 
 class MockFortniteMapRepository extends Mock
     implements FortniteMapRepositoryImpl {}
@@ -20,7 +20,7 @@ void main() {
     fortniteMapProviderMock = FortniteMapProvider(mockFortniteMapRepository);
   });
 
-  test('Should', () {
+  test('FortniteMapProvider should return correct type', () {
     final provider = ProviderContainer().read(fortniteMapProvider);
 
     expect(
@@ -29,7 +29,9 @@ void main() {
     );
   });
 
-  test('Should', () async {
+  test(
+      'FortniteMapProvider should retrieve FortniteMap object when success call retrieveFortniteMap',
+      () async {
     when(() => mockFortniteMapRepository.retrieveFortniteMap()).thenAnswer(
       (_) async => mockFortniteMapModel,
     );
@@ -46,7 +48,9 @@ void main() {
     );
   });
 
-  test('Should not', () async {
+  test(
+      'FortniteMapProvider should should throw exception when call retrieveFortniteMap',
+      () async {
     when(() => mockFortniteMapRepository.retrieveFortniteMap())
         .thenThrow(Exception());
 

@@ -59,8 +59,9 @@ class FortniteMapScreenState extends ConsumerState<FortniteMapScreen> {
           },
           loading: () {
             return const Center(
-              key: Key('fortnite_map_loading_widget'),
-              child: CircularProgressIndicator(),
+              child: CircularProgressIndicator(
+                key: Key('fortnite_map_loading_widget'),
+              ),
             );
           },
         ),

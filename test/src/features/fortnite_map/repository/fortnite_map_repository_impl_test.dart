@@ -6,7 +6,7 @@ import 'package:fortnite_app/src/features/fortnite_map/repository/fortnite_map_r
 import 'package:http_mock_adapter/http_mock_adapter.dart';
 import 'package:mocktail/mocktail.dart';
 
-import '../../../../test_util/test_util.dart';
+import '../../../../test_helper/test_helper.dart';
 
 class MockFortniteMapRepository extends Mock
     implements FortniteMapRepositoryImpl {}
@@ -21,15 +21,8 @@ void main() {
 
   setUp(() {
     mockFortniteMapRepository = MockFortniteMapRepository();
-    Dio dio = Dio(BaseOptions(baseUrl: 'https://example.com/'));
-    dioAdapter = DioAdapter(
-      dio: dio,
-      matcher: const FullHttpRequestMatcher(),
-    );
-    dio.httpClientAdapter = dioAdapter;
-    dioProvider = Provider(((ref) {
-      return dio;
-    }));
+    dioProvider = DioMock.createMock();
+    dioAdapter = DioMock.dioAdapter;
 
     fortniteMapRepositoryImpl = FortniteMapRepositoryImpl(
       ProviderContainer(
@@ -40,13 +33,14 @@ void main() {
     );
   });
 
-  test('Test if correct type is returned', () {
+  test('FortniteMapRepositoryImpl should return correct type', () {
     final provider = ProviderContainer().read(fortniteMapRepository);
 
     expect(provider, isA<FortniteMapRepositoryImpl>());
   });
 
-  test('Retrieve FortniteMap object when success call retrieveFortniteMap',
+  test(
+      'FortniteMapRepositoryImpl should retrieve FortniteMap object when success call retrieveFortniteMap',
       () async {
     dioAdapter.onGet(
       'map',
@@ -68,14 +62,16 @@ void main() {
     );
   });
 
-  test('Throws exception when call retrieveFortniteMap', () async {
+  test(
+      'FortniteMapRepositoryImpl should throw exception when call retrieveFortniteMap',
+      () async {
     dioAdapter.onGet(
       'map',
       (server) => server.reply(
         500,
         DioError(
           response: Response(
-            data: 'Something went wrong',
+            data: 'any_data',
             statusCode: 500,
             requestOptions: RequestOptions(path: 'any_path'),
           ),

@@ -6,7 +6,7 @@ import 'package:fortnite_app/src/features/user_stats/repository/user_stats_repos
 import 'package:http_mock_adapter/http_mock_adapter.dart';
 import 'package:mocktail/mocktail.dart';
 
-import '../../../../test_util/test_util.dart';
+import '../../../../test_helper/test_helper.dart';
 
 class MockUserStatsRepository extends Mock implements UserStatsRepositoryImpl {}
 
@@ -20,15 +20,8 @@ void main() {
 
   setUp(() {
     mockUserStatsRepository = MockUserStatsRepository();
-    Dio dio = Dio(BaseOptions(baseUrl: 'https://example.com/'));
-    dioAdapter = DioAdapter(
-      dio: dio,
-      matcher: const FullHttpRequestMatcher(),
-    );
-    dio.httpClientAdapter = dioAdapter;
-    dioProvider = Provider(((ref) {
-      return dio;
-    }));
+    dioProvider = DioMock.createMock();
+    dioAdapter = DioMock.dioAdapter;
 
     userStatsRepositoryImpl = UserStatsRepositoryImpl(
       ProviderContainer(
@@ -39,13 +32,14 @@ void main() {
     );
   });
 
-  test('Test if correct type is returned', () {
+  test('UserStatsRepositoryImpl should return correct type', () {
     final provider = ProviderContainer().read(userStatsRepository);
 
     expect(provider, isA<UserStatsRepositoryImpl>());
   });
 
-  test('Retrieve FortniteMap object when success call retrieveFortniteMap',
+  test(
+      'UserStatsRepositoryImpl should retrieve FortniteMap object when success call retrieveUserStats',
       () async {
     dioAdapter.onGet(
       'stats/any_name',
@@ -71,14 +65,16 @@ void main() {
     );
   });
 
-  test('Throws exception when call retrieveFortniteMap', () async {
+  test(
+      'UserStatsRepositoryImpl should throw exception when call retrieveUserStats',
+      () async {
     dioAdapter.onGet(
       'map',
       (server) => server.reply(
         500,
         DioError(
           response: Response(
-            data: 'Something went wrong',
+            data: 'any_data',
             statusCode: 500,
             requestOptions: RequestOptions(path: 'any_path'),
           ),

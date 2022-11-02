@@ -5,7 +5,7 @@ import 'package:fortnite_app/src/features/user_stats/repository/user_stats_repos
 import 'package:fortnite_app/src/features/user_stats/view_model/user_stats_provider.dart';
 import 'package:mocktail/mocktail.dart';
 
-import '../../../../test_util/test_util.dart';
+import '../../../../test_helper/test_helper.dart';
 
 class MockUserStatsRepository extends Mock implements UserStatsRepositoryImpl {}
 
@@ -19,7 +19,7 @@ void main() {
     userStatsProviderMock = UserStatsProvider(mockUserStatsRepository);
   });
 
-  test('Should', () {
+  test('UserStatsProvider should return correct type', () {
     final provider = ProviderContainer().read(userStatsProvider);
 
     expect(
@@ -28,7 +28,9 @@ void main() {
     );
   });
 
-  test('Should', () async {
+  test(
+      'UserStatsProvider should retrieve FortniteMap object when success call retrieveUserStats',
+      () async {
     when(() => mockUserStatsRepository.retrieveUserStats(userName: 'any_name'))
         .thenAnswer(
       (_) async => mockUserStatsModel,
@@ -46,7 +48,8 @@ void main() {
     );
   });
 
-  test('Should not', () async {
+  test('UserStatsProvider should throw exception when call retrieveUserStats',
+      () async {
     when(() => mockUserStatsRepository.retrieveUserStats(userName: 'any_name'))
         .thenThrow(Exception());
 
