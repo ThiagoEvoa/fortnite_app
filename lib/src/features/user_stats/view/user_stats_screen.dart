@@ -39,9 +39,11 @@ class UserStatsScreenState extends ConsumerState<UserStatsScreen> {
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         children: [
           TextField(
+            key: const Key('user_stats_textfield_widget'),
             controller: _textEditingController,
             decoration: InputDecoration(
               suffixIcon: IconButton(
+                key: const Key('user_stats_search_widget'),
                 onPressed: _retrieveFortniteShop,
                 icon: const Icon(Icons.search),
               ),
@@ -57,8 +59,11 @@ class UserStatsScreenState extends ConsumerState<UserStatsScreen> {
             child: provider.when(
               data: (data) {
                 return data == UserStats.initialState()
-                    ? Container()
+                    ? Container(
+                        key: const Key('user_stats_container_widget'),
+                      )
                     : Column(
+                        key: const Key('user_stats_column_widget'),
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Center(child: Image.asset('assets/images/icon.png')),
@@ -70,10 +75,15 @@ class UserStatsScreenState extends ConsumerState<UserStatsScreen> {
                       );
               },
               error: (error, stack) {
-                return Center(child: Text(error.toString()));
+                return Center(
+                    key: const Key('user_stats_error_widget'),
+                    child: Text(error.toString()));
               },
               loading: () {
-                return const Center(child: CircularProgressIndicator());
+                return const Center(
+                    child: CircularProgressIndicator(
+                  key: Key('user_stats_loading_widget'),
+                ));
               },
             ),
           ),

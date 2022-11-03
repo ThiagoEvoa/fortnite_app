@@ -1,9 +1,6 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_test/flutter_test.dart';
 import 'package:fortnite_app/src/features/fortnite_map/model/fortnite_map.dart';
 import 'package:fortnite_app/src/features/fortnite_map/repository/fortnite_map_repository_impl.dart';
 import 'package:fortnite_app/src/features/fortnite_map/view_model/fortnite_map_provider.dart';
-import 'package:mocktail/mocktail.dart';
 
 import '../../../../test_helper/test_helper.dart';
 

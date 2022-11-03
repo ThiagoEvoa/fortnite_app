@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:flutter_test/flutter_test.dart';
 import 'package:fortnite_app/src/features/fortnite_map/model/fortnite_map.dart';
 
 import '../../../../test_helper/test_helper.dart';

@@ -8,7 +8,6 @@ class MockFortniteMapRepository extends Mock
     implements FortniteMapRepositoryImpl {}
 
 void main() {
-  late FortniteMapProvider mockFortniteMapProvider;
   late FortniteMapRepositoryImpl mockFortniteRepositoryImpl;
 
   setUpAll(() {
@@ -17,7 +16,6 @@ void main() {
 
   setUp(() {
     mockFortniteRepositoryImpl = MockFortniteMapRepository();
-    mockFortniteMapProvider = FortniteMapProvider(mockFortniteRepositoryImpl);
   });
 
   testWidgets('FortniteMapScreen should present all widgets correctly',
@@ -55,8 +53,6 @@ void main() {
     expect(containerFinder, findsOneWidget);
 
     await tester.pump();
-
-    await mockFortniteMapProvider.retrieveFortniteMap();
 
     final finder = find.byKey(const Key('fortnite_map_image_widget'));
 
@@ -140,8 +136,6 @@ void main() {
     expect(containerFinder, findsOneWidget);
 
     await tester.pump();
-
-    await mockFortniteMapProvider.retrieveFortniteMap();
 
     final finder = find.byKey(const Key('fortnite_map_error_widget'));
 

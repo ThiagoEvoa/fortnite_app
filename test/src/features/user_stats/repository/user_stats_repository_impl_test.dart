@@ -1,10 +1,6 @@
-import 'package:dio/dio.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_test/flutter_test.dart';
 import 'package:fortnite_app/src/features/user_stats/model/user_stats.dart';
 import 'package:fortnite_app/src/features/user_stats/repository/user_stats_repository_impl.dart';
 import 'package:http_mock_adapter/http_mock_adapter.dart';
-import 'package:mocktail/mocktail.dart';
 
 import '../../../../test_helper/test_helper.dart';
 
