@@ -1,5 +1,3 @@
-import 'package:fortnite_app/src/features/features.dart';
-
 import '../../../../test_helper/test_helper.dart';
 
 class MockFortniteMapProvider extends Mock implements FortniteMapProvider {}

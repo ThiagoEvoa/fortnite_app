@@ -1,5 +1,3 @@
-import 'package:fortnite_app/src/features/fortnite_map/model/fortnite_map.dart';
-import 'package:fortnite_app/src/features/fortnite_map/repository/fortnite_map_repository_impl.dart';
 import 'package:http_mock_adapter/http_mock_adapter.dart';
 
 import '../../../../test_helper/test_helper.dart';
@@ -42,9 +40,7 @@ void main() {
       'map',
       (server) => server.reply(
         200,
-        const FortniteMap(
-          fortniteMapUrl: 'https://fortnite-api.com/images/map_en.png',
-        ),
+        mockFortniteMapModel,
         delay: const Duration(seconds: 1),
       ),
       data: Matchers.any,

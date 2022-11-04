@@ -1,7 +1,3 @@
-import 'package:fortnite_app/src/features/user_stats/model/user_stats.dart';
-import 'package:fortnite_app/src/features/user_stats/repository/user_stats_repository_impl.dart';
-import 'package:fortnite_app/src/features/user_stats/view_model/user_stats_provider.dart';
-
 import '../../../../test_helper/test_helper.dart';
 
 class MockUserStatsRepository extends Mock implements UserStatsRepositoryImpl {}

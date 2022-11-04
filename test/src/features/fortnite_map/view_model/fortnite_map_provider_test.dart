@@ -1,7 +1,3 @@
-import 'package:fortnite_app/src/features/fortnite_map/model/fortnite_map.dart';
-import 'package:fortnite_app/src/features/fortnite_map/repository/fortnite_map_repository_impl.dart';
-import 'package:fortnite_app/src/features/fortnite_map/view_model/fortnite_map_provider.dart';
-
 import '../../../../test_helper/test_helper.dart';
 
 class MockFortniteMapRepository extends Mock

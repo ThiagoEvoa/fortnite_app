@@ -1,9 +1,8 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'package:fortnite_app/src/features/fortnite_map/view/fortnite_map_screen.dart';
-import 'package:fortnite_app/src/features/fortnite_shop/view/fortnite_shop_screen.dart';
-import 'package:fortnite_app/src/features/user_stats/view/user_stats_screen.dart';
+
+import '../../features/features.dart';
 
 class EntryPointWidget extends StatefulWidget {
   const EntryPointWidget({super.key});

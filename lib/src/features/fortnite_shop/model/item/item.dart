@@ -25,9 +25,9 @@ class Item with _$Item {
         description: '',
         type: '',
         rarity: '',
-        introduction: '',
         images: Images.initialState(),
         added: '',
+        introduction: '',
         set: '',
       );
 }

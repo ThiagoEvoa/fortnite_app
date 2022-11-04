@@ -1,7 +1,5 @@
 // ignore_for_file: invalid_use_of_protected_member
 
-import 'package:fortnite_app/src/features/features.dart';
-
 import '../../../../test_helper/test_helper.dart';
 
 class MockUserStatsProvider extends Mock implements UserStatsProvider {}

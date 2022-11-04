@@ -5,10 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ErrorWidget extends StatefulWidget {
-  const ErrorWidget(this.appLocalizations, {super.key, required this.error});
+  const ErrorWidget({super.key, required this.error});
 
   final Object error;
-  final AppLocalizations appLocalizations;
 
   @override
   State<ErrorWidget> createState() => _ErrorWidgetState();
@@ -16,12 +15,11 @@ class ErrorWidget extends StatefulWidget {
 
 class _ErrorWidgetState extends State<ErrorWidget> {
   Type get _error => (widget.error as DioError).error.runtimeType;
-  AppLocalizations get _appLocalizations => widget.appLocalizations;
 
-  String _getErrorMessage() {
+  String _getErrorMessage(AppLocalizations appLocalizations) {
     switch (_error) {
       case SocketException:
-        return _appLocalizations.internet_exception_message;
+        return appLocalizations.internet_exception_message;
       default:
         return 'Something went wrong.';
     }
@@ -34,10 +32,13 @@ class _ErrorWidgetState extends State<ErrorWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final appLocalizations = AppLocalizations.of(context);
+
     return Scaffold(
+      key: const Key('error_widget'),
       appBar: AppBar(),
       body: Center(
-        child: Text(_getErrorMessage()),
+        child: Text(_getErrorMessage(appLocalizations!)),
       ),
     );
   }

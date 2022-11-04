@@ -1,7 +1,5 @@
 import 'dart:convert';
 
-import 'package:fortnite_app/src/features/user_stats/model/user_stats.dart';
-
 import '../../../../test_helper/test_helper.dart';
 
 void main() {

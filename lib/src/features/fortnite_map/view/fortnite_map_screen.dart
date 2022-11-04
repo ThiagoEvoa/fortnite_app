@@ -53,7 +53,6 @@ class FortniteMapScreenState extends ConsumerState<FortniteMapScreen> {
           error: (error, stack) {
             return ErrorWidget(
               key: const Key('fortnite_map_error_widget'),
-              appLocalizations!,
               error: error,
             );
           },

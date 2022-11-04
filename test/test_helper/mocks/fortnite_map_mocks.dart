@@ -1,4 +1,4 @@
-import 'package:fortnite_app/src/features/fortnite_map/model/fortnite_map.dart';
+import 'package:fortnite_app/src/features/features.dart';
 
 const mockFortniteMapStringJson =
     '{"map":"https://fortnite-api.com/images/map_en.png"}';

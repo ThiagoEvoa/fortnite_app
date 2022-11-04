@@ -23,6 +23,7 @@ class FortniteShopScreenState extends ConsumerState<FortniteShopScreen> {
       context: context,
       builder: (context) {
         return AlertDialog(
+          key: const Key('fortnite_shop_dialod_widget'),
           title: Text(item.name),
           content: Image.network(
             item.images.featured ?? item.images.icon!,
@@ -47,6 +48,7 @@ class FortniteShopScreenState extends ConsumerState<FortniteShopScreen> {
       body: provider.when(
         data: (data) {
           return ListView(
+            key: const Key('fortnite_shop_listview_widget'),
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
             children: [
               Text(data.daily.name!),
@@ -59,10 +61,17 @@ class FortniteShopScreenState extends ConsumerState<FortniteShopScreen> {
           );
         },
         error: (error, stack) {
-          return Text(error.toString());
+          return Text(
+            error.toString(),
+            key: const Key('fortnite_shop_error_widget'),
+          );
         },
         loading: () {
-          return const CircularProgressIndicator();
+          return const Center(
+            child: CircularProgressIndicator(
+              key: Key('fortnite_shop_loading_widget'),
+            ),
+          );
         },
       ),
     );
