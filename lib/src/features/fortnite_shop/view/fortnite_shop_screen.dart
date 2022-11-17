@@ -23,7 +23,7 @@ class FortniteShopScreenState extends ConsumerState<FortniteShopScreen> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          key: const Key('fortnite_shop_dialod_widget'),
+          key: const Key('fortnite_shop_dialog_widget'),
           title: Text(item.name),
           content: Image.network(
             item.images.featured ?? item.images.icon!,
@@ -85,6 +85,7 @@ class FortniteShopScreenState extends ConsumerState<FortniteShopScreen> {
               children: entry.items
                   .map(
                     (item) => ListTile(
+                      key: Key(item.name),
                       contentPadding: const EdgeInsets.all(1),
                       leading: CircleAvatar(
                         child: Image.network(
@@ -92,7 +93,9 @@ class FortniteShopScreenState extends ConsumerState<FortniteShopScreen> {
                         ),
                       ),
                       title: Text(item.name),
-                      onTap: () => _showDialog(item),
+                      onTap: () {
+                        _showDialog(item);
+                      },
                     ),
                   )
                   .toList(),

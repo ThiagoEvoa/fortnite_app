@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart' hide ErrorWidget;
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../util/widgets/error_widget.dart';
@@ -29,7 +28,6 @@ class FortniteMapScreenState extends ConsumerState<FortniteMapScreen> {
   Widget build(BuildContext context) {
     final provider = ref.watch(fortniteMapProvider);
     final size = MediaQuery.of(context).size;
-    final appLocalizations = AppLocalizations.of(context);
 
     return Scaffold(
       appBar: AppBar(),
