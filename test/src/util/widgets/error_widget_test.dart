@@ -5,7 +5,7 @@ import 'package:fortnite_app/src/util/util.dart' as util;
 import '../../../test_helper/test_helper.dart';
 
 void main() {
-  testWidgets('Show', (tester) async {
+  testWidgets('Show Error widget correctly', (tester) async {
     await tester.pumpWidget(
       Directionality(
         textDirection: TextDirection.ltr,

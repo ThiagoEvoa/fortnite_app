@@ -2,8 +2,6 @@
 
 import '../../../../test_helper/test_helper.dart';
 
-class MockUserStatsProvider extends Mock implements UserStatsProvider {}
-
 class MockUserStatsRepository extends Mock implements UserStatsRepositoryImpl {}
 
 class MockStackTrace extends Mock implements StackTrace {}

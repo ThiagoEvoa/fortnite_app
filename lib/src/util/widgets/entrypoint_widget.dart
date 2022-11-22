@@ -31,11 +31,14 @@ class _EntryPointWidgetState extends State<EntryPointWidget> {
     final theme = Theme.of(context);
 
     return Scaffold(
+      key: const Key('entry_point_widget'),
       body: _screens[_bottomNavIndex],
       bottomNavigationBar: AnimatedBottomNavigationBar.builder(
         itemCount: _screens.length,
         activeIndex: _bottomNavIndex,
-        onTap: (index) => setState(() => _bottomNavIndex = index),
+        onTap: (index) {
+          setState(() => _bottomNavIndex = index);
+        },
         tabBuilder: (index, isActive) {
           final selectedColor =
               isActive ? theme.primaryColorLight : theme.iconTheme.color;

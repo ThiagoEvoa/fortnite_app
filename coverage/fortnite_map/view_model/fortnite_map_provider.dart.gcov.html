@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2022-11-17 13:10:47</td>
+            <td class="headerValue">2022-11-22 10:54:51</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">0</td>
@@ -65,22 +65,22 @@
 <a name="3"><span class="lineNum">       3 </span>            : import 'package:fortnite_app/src/features/fortnite_map/repository/fortnite_map_repository.dart';</a>
 <a name="4"><span class="lineNum">       4 </span>            : import 'package:fortnite_app/src/features/fortnite_map/repository/fortnite_map_repository_impl.dart';</a>
 <a name="5"><span class="lineNum">       5 </span>            : </a>
-<a name="6"><span class="lineNum">       6 </span><span class="lineCov">          4 : final fortniteMapProvider =</span></a>
-<a name="7"><span class="lineNum">       7 </span><span class="lineCov">          2 :     StateNotifierProvider&lt;FortniteMapProvider, AsyncValue&lt;FortniteMap&gt;&gt;(</span></a>
+<a name="6"><span class="lineNum">       6 </span><span class="lineCov">          6 : final fortniteMapProvider =</span></a>
+<a name="7"><span class="lineNum">       7 </span><span class="lineCov">          3 :     StateNotifierProvider&lt;FortniteMapProvider, AsyncValue&lt;FortniteMap&gt;&gt;(</span></a>
 <a name="8"><span class="lineNum">       8 </span><span class="lineCov">          8 :   (ref) =&gt; FortniteMapProvider(ref.watch(fortniteMapRepository)),</span></a>
 <a name="9"><span class="lineNum">       9 </span>            : );</a>
 <a name="10"><span class="lineNum">      10 </span>            : </a>
 <a name="11"><span class="lineNum">      11 </span>            : class FortniteMapProvider extends StateNotifier&lt;AsyncValue&lt;FortniteMap&gt;&gt; {</a>
 <a name="12"><span class="lineNum">      12 </span>            :   final FortniteMapRepository _fortniteMapRepository;</a>
 <a name="13"><span class="lineNum">      13 </span>            : </a>
-<a name="14"><span class="lineNum">      14 </span><span class="lineCov">          2 :   FortniteMapProvider(this._fortniteMapRepository)</span></a>
-<a name="15"><span class="lineNum">      15 </span><span class="lineCov">          6 :       : super(AsyncValue.data(FortniteMap.initialState()));</span></a>
+<a name="14"><span class="lineNum">      14 </span><span class="lineCov">          3 :   FortniteMapProvider(this._fortniteMapRepository)</span></a>
+<a name="15"><span class="lineNum">      15 </span><span class="lineCov">          9 :       : super(AsyncValue.data(FortniteMap.initialState()));</span></a>
 <a name="16"><span class="lineNum">      16 </span>            : </a>
-<a name="17"><span class="lineNum">      17 </span><span class="lineCov">          2 :   Future&lt;void&gt; retrieveFortniteMap() async {</span></a>
+<a name="17"><span class="lineNum">      17 </span><span class="lineCov">          3 :   Future&lt;void&gt; retrieveFortniteMap() async {</span></a>
 <a name="18"><span class="lineNum">      18 </span>            :     try {</a>
-<a name="19"><span class="lineNum">      19 </span><span class="lineCov">          2 :       state = const AsyncLoading();</span></a>
-<a name="20"><span class="lineNum">      20 </span><span class="lineCov">          4 :       final fortniteMap = await _fortniteMapRepository.retrieveFortniteMap();</span></a>
-<a name="21"><span class="lineNum">      21 </span><span class="lineCov">          4 :       state = AsyncValue.data(fortniteMap);</span></a>
+<a name="19"><span class="lineNum">      19 </span><span class="lineCov">          3 :       state = const AsyncLoading();</span></a>
+<a name="20"><span class="lineNum">      20 </span><span class="lineCov">          6 :       final fortniteMap = await _fortniteMapRepository.retrieveFortniteMap();</span></a>
+<a name="21"><span class="lineNum">      21 </span><span class="lineCov">          6 :       state = AsyncValue.data(fortniteMap);</span></a>
 <a name="22"><span class="lineNum">      22 </span>            :     } catch (exception, stackTrace) {</a>
 <a name="23"><span class="lineNum">      23 </span><span class="lineCov">          4 :       state = AsyncValue.error(exception, stackTrace);</span></a>
 <a name="24"><span class="lineNum">      24 </span>            :     }</a>

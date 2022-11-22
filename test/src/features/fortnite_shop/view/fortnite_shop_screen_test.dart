@@ -1,7 +1,5 @@
 import '../../../../test_helper/test_helper.dart';
 
-class MockFortniteShopProvider extends Mock implements FortniteShopProvider {}
-
 class MockFortniteShopRepository extends Mock
     implements FortniteShopRepositoryImpl {}
 
