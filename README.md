@@ -1,16 +1,28 @@
 # fortnite_app
 
-A new Flutter project.
+This project is used for reference only.
 
-## Getting Started
+## Used packages
 
-This project is a starting point for a Flutter application.
+- [animated_bottom_navigation_bar]()
+- [cupertino_icons]()
+- [dio]()
+- [flutter_launcher_icons]()
+- [flutter_native_splash]()
+- [flutter_riverpod]()
+- [freezed_annotation]()
+- [json_annotation]()
+- [pretty_dio_logger]()
+- [retrofit]()
 
-A few resources to get you started if this is your first Flutter project:
+## Used dev packages
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- [build_runner]()
+- [flutter_lints]()
+- [freezed]()
+- [http]()
+- [http_mock_adapter]()
+- [intl]()
+- [json_serializable]()
+- [mocktail]()
+- [retrofit_generator]()
