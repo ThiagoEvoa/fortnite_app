@@ -24,11 +24,7 @@ void main() {
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
-          userStatsProvider.overrideWithProvider(
-            StateNotifierProvider<UserStatsProvider, AsyncValue<UserStats>>(
-              (_) => mockUserStatsProvider,
-            ),
-          ),
+          userStatsProvider.overrideWith(((ref) => mockUserStatsProvider)),
         ],
         child: Localizations(
           delegates: const [
@@ -59,11 +55,7 @@ void main() {
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
-          userStatsProvider.overrideWithProvider(
-            StateNotifierProvider<UserStatsProvider, AsyncValue<UserStats>>(
-              (_) => mockUserStatsProvider,
-            ),
-          ),
+          userStatsProvider.overrideWith(((ref) => mockUserStatsProvider)),
         ],
         child: Localizations(
           delegates: const [
@@ -99,11 +91,7 @@ void main() {
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
-          userStatsProvider.overrideWithProvider(
-            StateNotifierProvider<UserStatsProvider, AsyncValue<UserStats>>(
-              (_) => mockUserStatsProvider,
-            ),
-          ),
+          userStatsProvider.overrideWith(((ref) => mockUserStatsProvider)),
         ],
         child: Localizations(
           delegates: const [
@@ -135,11 +123,7 @@ void main() {
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
-          userStatsProvider.overrideWithProvider(
-            StateNotifierProvider<UserStatsProvider, AsyncValue<UserStats>>(
-              (_) => mockUserStatsProvider,
-            ),
-          ),
+          userStatsProvider.overrideWith(((ref) => mockUserStatsProvider)),
         ],
         child: Localizations(
           delegates: const [
@@ -181,11 +165,7 @@ void main() {
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
-          userStatsProvider.overrideWithProvider(
-            StateNotifierProvider<UserStatsProvider, AsyncValue<UserStats>>(
-              (_) => mockUserStatsProvider,
-            ),
-          ),
+          userStatsProvider.overrideWith(((ref) => mockUserStatsProvider)),
         ],
         child: Localizations(
           delegates: const [
