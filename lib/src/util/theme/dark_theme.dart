@@ -18,6 +18,7 @@ const _mapColor = <int, Color>{
 };
 
 final appThemeDark = ThemeData(
+  useMaterial3: true,
   visualDensity: VisualDensity.adaptivePlatformDensity,
   primarySwatch: MaterialColor(_mapColor[1000]!.value, _mapColor),
   brightness: Brightness.dark,
@@ -43,7 +44,7 @@ final appThemeDark = ThemeData(
     color: _mapColor[1000],
     elevation: 0,
     iconTheme: IconThemeData(color: _mapColor[50]),
-    titleTextStyle: textTheme.headline6!.copyWith(color: _mapColor[50]),
+    titleTextStyle: textTheme.titleLarge!.copyWith(color: _mapColor[50]),
   ),
   tabBarTheme: TabBarTheme(
     labelColor: _mapColor[1000],

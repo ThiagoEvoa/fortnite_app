@@ -14,7 +14,6 @@ export 'package:mocktail/mocktail.dart';
 export 'mocks/dio_mock.dart';
 export 'mocks/fortnite_entry_mocks.dart';
 export 'mocks/fortnite_images_mocks.dart';
-export 'mocks/fortnite_images_mocks.dart';
 export 'mocks/fortnite_item_mocks.dart';
 export 'mocks/fortnite_map_mocks.dart';
 export 'mocks/fortnite_shop_mocks.dart';
